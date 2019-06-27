@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html lang="en-US" ng-app>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	<title>POS - A Crony Of Point Of Sale</title>
+
+	<script>
+		window.resizeTo(936,1024);
+  </script>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap-theme.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic" <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+
+
+	<!--sweetalert lib-->
+	<script src="assets/js/sweetalert.min.js"></script>
+	<link rel="stylesheet" href="assets/css/sweetalert.min.css">
+	<!--angular-->
+	<script src="assets/js/angular.min.js"></script>
+	
+	<script src="assets/js/jquery-3.2.0.min.js"></script>
+
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
+
+
+	
+
+	<style type="text/css">
+		body {
+			margin: 0;
+			background-color: #286090;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			font-family: Ubuntu;
+		}
+
+		.email {
+			padding: 8px;
+			border-bottom: 2x solid black;
+			background-color: transparent;
+			margin-top: 50px;
+			margin-bottom: 5px;
+			width: 100%;
+			border: none;
+			border-bottom: 2px solid #bdc3c7;
+			margin-bottom: 10px;
+			text-align: center;
+			font-size: 16px;
+			color: grey;
+			outline: 0;
+
+		}
+
+		.submit {
+			margin-top: 20px;
+			padding: 12px 18px;
+			border-radius: 20px;
+			background-color: #e74c3c;
+			color: #ffffff;
+			width: 100%;
+			border: none;
+			text-align: center;
+			font-size: 16px;
+			outline: 0;
+		}
+
+		.submit:hover {
+			transition: .3s;
+			background-color: #2c3e50;
+			box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+
+
+		#scanpdt {
+			background: #ecf0f1;
+			width: 500px;
+			border-radius: 10px;
+		}
+
+		select {
+			padding: 8px 75px;
+			margin-bottom: 10px;
+			background: #ecf0f1;
+			border-radius: 20px;
+			outline: 0;
+		}
+
+		#selectId {
+			padding: 8px 85px;
+			margin-bottom: 10px;
+			background: #ecf0f1;
+			border-radius: 20px;
+			outline: 0;
+		}
+
+		#productinfo {
+			padding: 30px;
+		}
+
+		.addproduct {
+			margin-top: 20px;
+			padding: 12px 50px;
+			font-family: monospace;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="main">
+		<div class="container" style="padding-top:3%;">
+			<div class="row">
+				<h1 style="text-align:center;color:#FFFFFF; font-family: monospace; font-size: 1.6em;"><b>Add New Product & Print BarCode<b></h1>
+			</div>
+		</div>
+		<div id="scanpdt" class="container text-center" style="margin-top:1%">
+			<div id="productinfo" class="row">
+				<!--- Form Start -->
+
+				<form class="" action="" method="post">
+
+					<div class="form-group">
+						<label class="sr-only" for="exampleInputAmount">Name</label>
+						<div class="input-group">
+							<div class="input-group-addon">Name</div>
+							<input type="text" name="name_" class="form-control" id="exampleInputAmount" placeholder="Product Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="exampleInputAmount">Barcode</label>
+						<div class="input-group">
+
+
+							<div class="input-group-addon">|||| ||</div>
+							<input type="text" name="barcode_" onmouseover="this.focus();" class="form-control" id="exampleInputAmount" placeholder="" value="" disabled>
+
+
+
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="exampleInputAmount">Cost Price</label>
+						<div class="input-group">
+							<div class="input-group-addon">BDT</div>
+							<input type="text" name="cost_price_" class="form-control" id="exampleInputAmount" placeholder="Cost Price">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="exampleInputAmount">Sale Price</label>
+						<div class="input-group">
+							<div class="input-group-addon">BDT</div>
+							<input type="text" name="sale_price_" class="form-control" id="exampleInputAmount" placeholder="Sale Price">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="exampleInputAmount">Quantity</label>
+						<div class="input-group">
+							<div class="input-group-addon">Quantity</div>
+							<input type="text" name="quantity_" class="form-control" id="exampleInputAmount" placeholder="Quantity">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="exampleInputAmount">Category</label>
+						<div class="input-group">
+							<div class="selectOpt">
+								<select name="category_">
+									<option value="">Select Catagory</option>
+									
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="sr-only" for="exampleInputAmount">Brand</label>
+						<div class="input-group">
+							<div class="selectOpt">
+								<select name="brand_" id="selectId">
+									<option value="">Select Brand</option>
+									
+								</select>
+							</div>
+						</div>
+					</div>
+					<textarea name="comment_" class="form-control" rows="3" placeholder="Comment (Optional)"></textarea>
+
+					<button type="submit" name="add_product2" class="btn btn-primary addproduct">Save & Print BarCode</button>
+
+				</form>
+
+				<!-- Form End -->
+
+
+			</div>
+		</div>
+</body>
+<script>
+	'undefined' === typeof _trfq || (window._trfq = []);
+	'undefined' === typeof _trfd && (window._trfd = []), _trfd.push({
+		'tccl.baseHost': 'secureserver.net'
+	}), _trfd.push({
+		'ap': 'cpsh'
+	}, {
+		'server': 'a2plcpnl0354'
+	}) 
+</script>
+<script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
+
+</html>
