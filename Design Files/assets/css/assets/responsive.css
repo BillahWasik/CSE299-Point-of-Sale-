@@ -1,0 +1,60 @@
+/**********************************************************************
+***********************************************************************
+					Responsive for mobiel and ipad
+
+************************************************************************
+************************************************************************/
+
+
+
+
+/*===========================================================
+   -         For Mobile        -
+=============================================================*/
+
+@media only screen and (max-width: 760px) {
+  /*==============================================
+     -         Login Page       -
+  ==============================================*/
+  .login{
+ box-shadow            : 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+ background-image      :url("assets/images/girls-shopping-v2.html");
+ background-size       : auto;
+ /* background-size: auto 100%; */
+   background-repeat   : no-repeat;
+   padding-top         : 35%;
+   padding-bottom      : 6%;
+
+}
+
+/*==============================================
+   -         Popup Window       -
+==============================================*/
+
+
+.left-table{
+	margin               : 0 8% !important;
+}
+.right-table{
+	margin               : 0 8% !important;
+}
+.ng-pristine h4{
+	padding-top          : 40px;
+}
+#table-wrapper h4{
+	padding-top          : 40px;
+}
+#table-wrapper table thead th .text {
+  position             : unset;
+  z-index              : 2;
+  width                : 35%;
+  color                : #9a7575;
+  font-size            : 24px;
+  padding              : 0 90px;
+}
+#scanpdt {
+  width                : unset !important;
+  margin               : 0 4%;
+}
+
+}
