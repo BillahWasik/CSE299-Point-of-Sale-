@@ -159,7 +159,17 @@
             <div class="selectOpt">
               <select name="brand_">
                 <option value="NULL">Select Brand</option>
-				
+				<?php
+                  $brand_record=brand_picker($db);
+                  if (mysqli_num_rows($brand_record)>0) {
+                    while ($record_brand=mysqli_fetch_assoc($brand_record)) {
+                      ?>
+                      <option value="<?php echo $record_brand['brand_id']; ?>"><?php echo $record_brand['brand_title']; ?></option>
+                      <?php
+                    }
+                  }
+                   ?>
+
               </select>
             </div>
             <button class="submit" name="vendor">Submit</button>
