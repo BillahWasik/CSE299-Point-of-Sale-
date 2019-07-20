@@ -220,6 +220,28 @@
                 </thead>
                 <tbody>
            
+		        <?php
+                  $vendor_record=vendor_picker($db);
+                  if (mysqli_num_rows($vendor_record)>0) {
+                    while ($vendor_result=mysqli_fetch_assoc($vendor_record)) {
+                      ?>
+                      <tr>
+                        <td><?php echo $vendor_result['vendor_name']; ?></td>
+
+                        <td><?php
+                        $sql="SELECT * FROM pos_brand WHERE brand_id={$vendor_result['vendor_brand']} ";
+                        $sql_result=mysqli_query($db,$sql);
+                        $sql_result1=mysqli_fetch_assoc($sql_result);
+                        echo $sql_result1['brand_title'];
+                      ?></td>
+                        <td><?php echo $vendor_result['vendor_phone']; ?></td>
+                        <td><?php echo $vendor_result['vendor_address']; ?></td>
+
+                      </tr>
+                      <?php
+                    }
+                  }
+                   ?>
                 </tbody>
               </table>
             </div>
