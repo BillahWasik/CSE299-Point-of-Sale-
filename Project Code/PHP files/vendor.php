@@ -1,3 +1,13 @@
+<?php session_start(); ?> 
+<?php require 'function.php'; ?> 
+<?php
+   $db=db_connect();
+   // checking session validation
+   if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
+     header('Location: index.php');
+   }
+
+ ?>
 <!DOCTYPE HTML>
 <html lang="en-US" ng-app>
 
