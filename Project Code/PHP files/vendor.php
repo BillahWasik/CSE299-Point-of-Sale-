@@ -141,7 +141,7 @@
     <div class="container" style="margin-top:6%">
       <div class="row">
         <div class="col-md-5 col-xm-5  col-sm-5 left-table">
-          <h4 style="color: #333;" class="text-center">Add Spplier</h4>
+          <h4 style="color: #333;" class="text-center">Add Supplier</h4>
           <form action="" method="post">
             <input class="email" type="text" Placeholder="Name" name="name_" autocomplete="off" />
             <input class="email" type="text" Placeholder="Contact Number" name="phone_" autocomplete="off" />
@@ -152,7 +152,7 @@
 				
               </select>
             </div>
-            <button class="submit" name="vendor">Subnit</button>
+            <button class="submit" name="vendor">Submit</button>
           </form>
         </div>
       
