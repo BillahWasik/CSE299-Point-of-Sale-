@@ -159,12 +159,53 @@
             <div class="selectOpt">
               <select name="brand_">
                 <option value="NULL">Select Brand</option>
-				
+				<?php
+                  $brand_record=brand_picker($db);
+                  if (mysqli_num_rows($brand_record)>0) {
+                    while ($record_brand=mysqli_fetch_assoc($brand_record)) {
+                      ?>
+                      <option value="<?php echo $record_brand['brand_id']; ?>"><?php echo $record_brand['brand_title']; ?></option>
+                      <?php
+                    }
+                  }
+                   ?>
+
               </select>
             </div>
             <button class="submit" name="vendor">Submit</button>
           </form>
         </div>
+		<?php
+
+        if (isset($_POST['vendor'])) {
+        if (empty($_POST['name_']) || empty($_POST['phone_']) || empty($_POST['address_'])) {
+        $error="Please Fillout The Form Poperly!" ?>
+        <script>swal("Opss.....","<?php echo $error; ?>", "error");</script> <?php
+        }
+        else {
+          // define $username and $password
+          $vendor_name=$_POST['name_'];
+          $vendor_phone=$_POST['phone_'];
+          $vendor_address=$_POST['address_'];
+          $brand=$_POST['brand_'];
+
+
+          $add_vendor="INSERT INTO pos_vendor (vendor_id,vendor_name,vendor_phone,vendor_address,vendor_brand)VALUES (NULL,'$vendor_name',$vendor_phone,'$vendor_address',$brand)";
+          $vendor_run=mysqli_query($db,$add_vendor);
+          if ($vendor_run) {
+            $error="Supplier Added!" ?>
+            <script>swal("Success","<?php echo $error; ?>", "success");</script> <?php
+          }
+          else {
+            $error="Supplier Added Failed!" ?>
+            <script>swal("Something Wrong","<?php echo $error; ?>", "error");</script> <?php
+          }
+
+        }
+      }
+
+         ?>
+
       
         <div class="col-md-offset-2 col-xm-2  col-sm-2"></div>
         <div class="col-md-5 col-xm-5  col-sm-5 right-table ">
@@ -179,6 +220,28 @@
                 </thead>
                 <tbody>
            
+		        <?php
+                  $vendor_record=vendor_picker($db);
+                  if (mysqli_num_rows($vendor_record)>0) {
+                    while ($vendor_result=mysqli_fetch_assoc($vendor_record)) {
+                      ?>
+                      <tr>
+                        <td><?php echo $vendor_result['vendor_name']; ?></td>
+
+                        <td><?php
+                        $sql="SELECT * FROM pos_brand WHERE brand_id={$vendor_result['vendor_brand']} ";
+                        $sql_result=mysqli_query($db,$sql);
+                        $sql_result1=mysqli_fetch_assoc($sql_result);
+                        echo $sql_result1['brand_title'];
+                      ?></td>
+                        <td><?php echo $vendor_result['vendor_phone']; ?></td>
+                        <td><?php echo $vendor_result['vendor_address']; ?></td>
+
+                      </tr>
+                      <?php
+                    }
+                  }
+                   ?>
                 </tbody>
               </table>
             </div>
