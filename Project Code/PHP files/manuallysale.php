@@ -24,6 +24,9 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>POS - A Crony Of Point Of Sale</title>
+    <script>
+        window.resizeTo(1100,500);
+    </script>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/tools.css" media="all" />
@@ -169,6 +172,22 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                     <input class="email" id="focus" type="text" Placeholder="UPC / Barcode" name="barcode_" autocomplete="off" autofocus />
                     <button type="submit" name="scan_product" class="submit">Submit</button>
                 </form>
+                <?php
+                if (isset($_POST['scan_product'])) {
+                    if (!empty($_POST['barcode_'])) {
+                        if (isset($_SESSION['cart'])) {
+                            $Cart=$_SESSION['cart'];
+                        }
+                        $cart[]=$_POST['barcode_'];
+                        $_SESSION['cart']=$Cart;
+                    }
+                    else {
+                        $error="Barcode Cannot Be Blank!" ?>
+                        <script>swal("error","<?php echo $error; ?>", "error");</script> <?php
+                    }
+                }
+
+                ?>
 
             </div>
 
