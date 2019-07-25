@@ -1,10 +1,14 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+
 <head>
     <meta charset="UTF-8">
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="hand watch, hand watch in bangladesh" />
+    <meta name="description" content="we are selling the best quality products and we export all over bangladesh.. " />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <title>POS - A Crony Of Point Of Sale</title>
 
@@ -13,6 +17,10 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-theme.css" media="all" />
     <link rel="stylesheet" type="text/css" href="assets/css/normalize.css" media="all" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular&subset=Latin,Cyrillic" <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
 
     <!--sweetalert lib-->
     <script src="assets/js/sweetalert.min.js"></script>
@@ -131,24 +139,88 @@
             border-color: #e74c3c;
         }
     </style>
-
 </head>
-<body>
-    <h1><b>New Sale List<b></h1><br>
-    <form class="" action="" method="post">
-        <h4>* Please scan product by Barcode Scanner</h4>
-        <input class="email" id="focus" type="text" Placeholder="UPC / Barcode" name="barcode_" autocomplete="off" autofocus />
-        <button type="submit" name="scan_product" class="submit">Submit</button>
-    </form>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Barcode</th>
-            <th>#Item</th>
-            <th><a href="#"></a></th>
-        </tr>
-        </thead>
-        </table>
-</body>
 
+<body>
+<div class="main">
+    <div class="container">
+        <div class="row">
+            <h1 style="text-align:center;color:#FFFFFF "><b>New Sale List<b></h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-xm-5  col-sm-5 left-table">
+                <form class="" action="" method="post">
+                    <h4 style="color: #e74c3c; margin-top: 25px;" class="text-center">* Please scan product by Barcode Scanner</h4>
+                    <input class="email" id="focus" type="text" Placeholder="UPC / Barcode" name="barcode_" autocomplete="off" autofocus />
+                    <button type="submit" name="scan_product" class="submit">Submit</button>
+                </form>
+
+            </div>
+
+            <div class="col-md-offset-2 col-xm-1  col-sm-1 spaces">
+                <div class="col-md-5 col-xm-5  col-sm-5 right-table ">
+                    <div id="table-scroll" style="margin-top: 5px;">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Barcode</th>
+                                <th>#Item</th>
+                                <th><a href="cart_remove_all.php?cartcode=all" class="confirmation-callback"><i class="far fa-trash-alt" style="color: #d9534f;" aria-hidden="true"></i></a></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td></td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <a href="#" class="confirmation-callback"><i class="far fa-trash-alt" aria-hidden="true"></i></a>
+                                </td>
+                            </tr>
+
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="continue">
+            <form class="" action="" method="post">
+                <button type="submit" name="check" class="btn btn-success conbtn">Continue</button>
+            </form>
+
+        </div>
+
+
+
+
+
+        <script src="assets/js/jquery-1.11.3.min" ></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" ></script>
+        <script src="assets/js/bootstrap-confirmation.js" ></script>
+        <script type="text/javascript">
+            $('.confirmation-callback').confirmation({
+                onConfirm: function() {
+                    var confirm = 'yes';
+
+                    return confirm;
+                },
+                onCancel: function() {
+
+                    var confirm = 'no';
+                    return confirm;
+                }
+            });
+        </script>
+</body>
 </html>
