@@ -220,7 +220,7 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                             ?>
 
                             <tr>
-                                <td><?php echo $barcode ?></td>
+                                <td><?php echo $value ?></td>
                                 <td>
                                     <?php
                                     $product="SELECT * FROM pos_product WHERE barcode='$value'";
