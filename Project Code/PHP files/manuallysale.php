@@ -200,16 +200,50 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                             </tr>
                             </thead>
                             <tbody>
+                            <?php
+                            if (isset($_SESSION['cart']) || !empty($_SESSION['cart'])) {
+                            end($_SESSION['cart']);
+                            $key=key($_SESSION['cart']);
+                            if (count($_SESSION['cart'])>0) {
+                            for ($i=$key; $i >=0 ; $i--) {
+                            if (isset($_SESSION['cart'][$i]) && !empty($_SESSION['cart'][$i]) ) {
+                            $value=$_SESSION['cart'][$i];
+                            ?>
+                            <?php
+                            $sql="select * from pos_product";
+                            $sql1=mysqli_query($db,$sql);
+                            $sql2=mysqli_fetch_assoc($sql1);
+                            if (mysqli_num_rows($sql1)>0) {
+                            while ($sql2=mysqli_fetch_assoc($sql1)) {
+
+                            if ($value==$sql2['barcode']) {
+                            ?>
 
                             <tr>
-                                <td></td>
+                                <td><?php echo $barcode ?></td>
                                 <td>
+                                    <?php
+                                    $product="SELECT * FROM pos_product WHERE barcode='$value'";
+                                    $product_sql=mysqli_query($db,$product);
+                                    $product_record=mysqli_fetch_assoc($product_sql);
+                                    echo $product_record['name'];
+                                    ?>
 
                                 </td>
                                 <td>
-                                    <a href="#" class="confirmation-callback"><i class="far fa-trash-alt" aria-hidden="true"></i></a>
+                                    <a href="cart_remove.php?cartcode=<?php echo $i; ?>" class="confirmation-callback"><i class="far fa-trash-alt" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
+                                <?php
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+                            }
+
+                            ?>
 
 
 
