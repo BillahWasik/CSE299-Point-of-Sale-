@@ -263,6 +263,28 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
             </form>
 
         </div>
+        <?php
+        if (isset($_POST['check'])) {
+
+
+            $date=dateinfo();
+            $verify=rand(100,999);
+            $sale="INSERT INTO pos_customer VALUES(NULL,'$date',$verify)";
+            $sale_sql=mysqli_query($db,$sale);
+            //this portion for retriving customer id session to saleproduct2 page
+            $customer="SELECT * FROM pos_customer WHERE verify=$verify";
+            $customer_query=mysqli_query($db,$customer);
+            if (mysqli_num_rows($customer_query)>0) {
+                $customer_result=mysqli_fetch_assoc($customer_query);
+                $_SESSION['customer_id']=$customer_result['customer_id'];
+                $_SESSION['discount_percent']=0;
+                $_SESSION['discount_round']=0;
+                $_SESSION['final_discount']=0;
+                header('Location: saleproduct2.php');
+            }
+        }
+
+        ?>
 
 
 
