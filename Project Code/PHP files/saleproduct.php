@@ -1,3 +1,17 @@
+<?php session_start(); ?>  <!-- Startong previous session -->
+<?php require 'function.php'; ?>  <!-- including function -->
+<?php ob_start();  ?> <!-- managing output buffer -->
+
+<?php
+
+$db=db_connect();
+// checking session validation
+if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
+    header('Location: index.php');
+}
+
+?>
+
 <!DOCTYPE HTML>
 <html lang="en-US" ng-app>
 
@@ -179,6 +193,22 @@
                 </form>
 
                 <!-- Scan a product -->
+                <?php
+                if (isset($_POST['scan_product'])) {
+                    if (!empty($_POST['barcode_'])) {
+                        if (isset($_SESSION['cart'])) {
+                            $cart=$_SESSION['cart']; //important
+                        }
+                        $cart[]=$_POST['barcode_'];
+                        $_SESSION['cart']=$cart;
+                    }
+                    else {
+                        $error="Barcode Cannot Be Blank!" ?>
+                        <script>swal("error","<?php echo $error; ?>", "error");</script> <?php
+                    }
+                }
+
+                ?>
 
             </div>
 
