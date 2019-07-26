@@ -193,6 +193,22 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                 </form>
 
                 <!-- Scan a product -->
+                <?php
+                if (isset($_POST['scan_product'])) {
+                    if (!empty($_POST['barcode_'])) {
+                        if (isset($_SESSION['cart'])) {
+                            $cart=$_SESSION['cart']; //important
+                        }
+                        $cart[]=$_POST['barcode_'];
+                        $_SESSION['cart']=$cart;
+                    }
+                    else {
+                        $error="Barcode Cannot Be Blank!" ?>
+                        <script>swal("error","<?php echo $error; ?>", "error");</script> <?php
+                    }
+                }
+
+                ?>
 
             </div>
 
