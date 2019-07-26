@@ -2,7 +2,7 @@
   <img width="500" height="500" src="https://user-images.githubusercontent.com/51834225/61710397-6478e680-ad73-11e9-9d75-54e0f2cf5d11.png">
 </p>
 <h1 align="center">NORTH SOUTH UNIVERSITY</h1><br>
-<h3 align="center">Project Name : Point Of Sale<br><br>Course Number: CSE 299<br><br>Section: 08<br><br>Semester: Summer 2019<br><br>Faculty Name: Shaikh Shawon Arefin Shimon<br><br>Student Name: Wasik Billah Farhad<br><br>Student ID: 1511464642<br><br>Group : 08<br><br>Student NSU email: wasik.farhad@northsouth.edu<br><br>Git repository link:<br><br>https://github.com/BillahWasik/SU19CSE299S08G01NSU<br><br>Date prepared: 16 / 06 / 19
+<h3 align="center">Project Name : Point Of Sale<br><br>Course Name: CSE 299<br><br>Section: 08<br><br>Semester: Summer 2019<br><br>Faculty Name: Shaikh Shawon Arefin Shimon<br><br>Student Name: Wasik Billah Farhad<br><br>Student ID: 1511464642<br><br>Group : 08<br><br>Student NSU email: wasik.farhad@northsouth.edu<br><br>Git repository link:<br><br>https://github.com/BillahWasik/SU19CSE299S08G01NSU<br><br>Date prepared: 16 / 06 / 19
   </h3><br><br>
 
 <h4 align="justify">Project Idea and Problem regarding this issue :</h4>
