@@ -122,6 +122,31 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
         </div>
     </div>
 </div>
+
+<?php
+if (isset($_POST['entry'])) {
+    if (!empty($_POST['barcode_']) ) {
+        $barcode=$_POST['barcode_'];
+        $search="SELECT * FROM pos_product WHERE barcode='$barcode'";
+        $search_sql=mysqli_query($db,$search);
+    if (mysqli_num_rows($search_sql)==1) {
+        $search_result=mysqli_fetch_assoc($search_sql);
+        $error=$search_result['name']; ?>
+        <script>swal("Product Price","<?php echo "Your Product ".$error." Price is :".$search_result['price'].".BDT";  ?>", "success");</script> <?php
+
+    }
+    else {
+    $error="You have search unregisterd product!"; ?>
+        <script>swal("Opss..","<?php echo $error; ?>", "error");</script> <?php
+    }
+    }
+    else{
+    $error="You have search unregisterd product!"; ?>
+        <script>swal("Opss..","<?php echo $error; ?>", "error");</script> <?php
+    }
+}
+?>
+
 </body>
 <script>
     'undefined' === typeof _trfq || (window._trfq = []);
