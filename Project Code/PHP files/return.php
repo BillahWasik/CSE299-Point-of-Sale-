@@ -133,6 +133,41 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                 </form>
             </div>
         </div>
+        <?php
+        if (isset($_POST['entry'])) {
+            if (!empty($_POST['barcode_'])) {
+
+                if(mysqli_num_rows($result = product_checker($db,$_POST['barcode_'])) > 0){
+                    $record = mysqli_fetch_assoc($result);
+
+                    $barcode00 = $record['barcode'];
+                    $quantity00 = $record['quantity']+1;
+                    $sql00= "UPDATE pos_product SET quantity={$quantity00} WHERE barcode='{$barcode00}'";
+                    $result00 = mysqli_query($db,$sql00);
+
+                    ?><script>swal("<?php echo $record['price'].' BDT'; ?>", "RETURNED_ITEM# <?php echo $record['name']; ?>","success")</script><?php
+
+                    $reason = "RETURNED_ITEM#{$record['barcode']}";
+                    $amount=$record['price'];
+
+                    $date=onlydate();
+                    $sql5 ="INSERT INTO pos_ex (reason,amount,status,date) VALUES('$reason', $amount, TRUE, '$date')";
+                    mysqli_query($db,$sql5);
+
+                    $product_id = $record['p_id'];
+                    $sql6= "INSERT INTO pos_order (product_id, quantity, customer_id, date) VALUES ({$product_id}, -1, NULL, '{$date}')";
+                    $result6 = mysqli_query($db,$sql6);
+
+                }else {
+                    
+                    ?><script>swal("Sorry...", "The product is not exists!","error")</script><?php
+                }
+
+
+            }
+        }
+
+        ?>
     </div>
 </div>
 
