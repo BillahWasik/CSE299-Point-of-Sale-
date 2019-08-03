@@ -270,6 +270,30 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                             </div>
                             <button type="submit" class="btn btn-default add" name="debit"><i class="fa fa-minus"></i> Withdraw</button>
                         </form>
+                        <?php
+                        if(isset($_POST['debit'])){
+                            if(!empty($_POST['reason_']) && !empty($_POST['amount_'])){
+
+                                $reason=$_POST['reason_'];
+                                // to protect injection
+                                $reason = stripslashes($reason);
+                                $reason = mysqli_real_escape_string($db, $reason);
+
+                                $amount=$_POST['amount_'];
+                                // to protect injection
+                                $amount = stripslashes($amount);
+                                $amount = mysqli_real_escape_string($db, $amount);
+
+                                $date=onlydate();
+                                $sql ="INSERT INTO pos_ex (reason,amount,status,date) VALUES('$reason', $amount, TRUE, '$date')";
+                                mysqli_query($db,$sql);
+                                echo '<meta http-equiv=Refresh content="0;url=?reload=1">';
+                                ?>
+
+                                <?php
+                            }
+                        }
+                        ?>
                     </td>
                 </tr>
             </table>
