@@ -309,21 +309,58 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>RETURNED_ITEM # </td>
-                    <td>[DATE]</td>
-                    <td>Amount</td>
-                </tr>
+                <?php
+                $credit = 0.0;
+                $debit =0.0;
+                if(isset($_POST['select_']) && !empty($_POST['short_month'])){
+                    $month=$_POST['short_month'];
+                    $sql3 = "SELECT * FROM pos_ex WHERE date LIKE '$month%' ORDER BY id DESC";
+                }else{
+                    $sql3 = "SELECT * FROM pos_ex ORDER BY id DESC";
 
+                }
 
-                <tr style="
+                $result3 = mysqli_query($db, $sql3);
+                if(mysqli_num_rows($result3) > 0){
+                while($record3 = mysqli_fetch_assoc($result3)){
+                ?>
+                    <tr>
+                        <td>
+                            <?php echo $record3['reason']; ?>
+                        </td>
+                        <td>
+                            <?php echo $record3['date']; ?>
+                        </td>
+                        <td>
+                            <?php if($record3['status']==FALSE){
+                                echo "(+) ";
+                                $shop_cash = $shop_cash + floatval($record3['amount']);
+                                $credit = $credit + floatval($record3['amount']);
+                            }else{
+                                echo "(-) ";
+                                $shop_cash = $shop_cash - floatval($record3['amount']);
+                                $debit = $debit + floatval($record3['amount']);
+                            } echo $record3['amount']." BDT"; ?>
+                        </td>
+                    </tr>
+                    <?php
+                } ?>
+                    <tr style="
 							background-color: #d2cffb;
 							font-weight: 600;
 							color: #1b4367;">
-                    <td>Total</td>
-                    <td>Credit: (+) </td>
-                    <td>Debit: (-) </td>
-                </tr>
+                        <td>Total</td>
+                        <td>
+                            <?php echo "Credit: (+) ".$credit." BDT"; ?>
+                        </td>
+                        <td>
+                            <?php echo "Debit: (-) ".$debit." BDT"; ?>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+
                 </tbody>
             </table>
         </div>
