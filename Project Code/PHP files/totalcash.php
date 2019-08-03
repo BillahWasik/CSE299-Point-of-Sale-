@@ -203,18 +203,21 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
 
             <div class="row">
                 <div class="col-sm-4">
-                    <h5>Net Product Sales Cash: </h5>
+                    <h5>Net Product Sales Cash: <?php echo sprintf('%.2f', $net_sale); ?> BDT </h5>
                 </div>
                 <div class="col-sm-4">
-                    <h5 style="text-align: right; color: #d2079b; font-family: cursive;">Cash On Delivery: </h5>
+                    <h5 style="text-align: right; color: #d2079b; font-family: cursive;">Cash On Delivery:
+                        <?php echo sprintf('%.2f', $cash_payment); ?> BDT</h5>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <h5>Management Cash Report: </h5>
+                    <h5>Management Cash Report:
+                        <?php echo sprintf('%.2f', $extra_cash); ?> BDT</h5>
                     <hr>
-                    <h5 style="/* padding-bottom: 10px; */">Total: </h5>
-                    <h5>Total Discount For Sale: </h5>
+                    <h5>Total:  <?php echo sprintf('%.2f', $shop_cash); ?> BDT </h5>
+                    <h5>Total Discount For Sale:
+                        <?php echo sprintf('%.2f', $net_discount); ?> BDT</h5>
                 </div>
             </div>
 
@@ -232,6 +235,30 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                             </div>
                             <button type="submit" class="btn btn-default add" name="credit"><i class="fa fa-plus"></i> Deposit</button>
                         </form>
+                        <?php
+                        if(isset($_POST['credit'])){
+                            if(!empty($_POST['reason_']) && !empty($_POST['amount_'])){
+
+                                $reason=$_POST['reason_'];
+                                // to protect injection
+                                $reason = stripslashes($reason);
+                                $reason = mysqli_real_escape_string($db, $reason);
+
+                                $amount=$_POST['amount_'];
+                                // to protect injection
+                                $amount = stripslashes($amount);
+                                $amount = mysqli_real_escape_string($db, $amount);
+
+                                $date=onlydate();
+                                $sql ="INSERT INTO pos_ex (reason,amount,status,date) VALUES('$reason', $amount, FALSE, '$date')";
+                                mysqli_query($db,$sql);
+                                echo '<meta http-equiv=Refresh content="0;url=?reload=1">';
+                                ?>
+                                <script></script>
+                                <?php
+                            }
+                        }
+                        ?>
                     </td>
                     <td>
                         <form method="post">
