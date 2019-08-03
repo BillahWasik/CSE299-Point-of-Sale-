@@ -1,3 +1,19 @@
+<?php session_start(); ?>
+<!-- Starting previous session -->
+<?php require 'function.php'; ?>
+<!-- including function -->
+<?php ob_start();  ?>
+<!-- managing output buffer -->
+
+<?php
+
+$db=db_connect();
+// checking session validation
+if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
+    header('Location: index.php');
+}
+
+?>
 <!DOCTYPE HTML>
 <html lang="en-US" ng-app>
 
