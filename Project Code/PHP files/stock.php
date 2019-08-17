@@ -153,6 +153,19 @@ $total_product=0;
             </div>
             <button type="submit" class="btn btn-default searchbtn" name="category">Select Category</button>
         </form>
+
+        <?php
+        if (isset($_POST['category']) ) {
+            if (isset($_POST['category_']) ) {
+                $category_id=$_POST['category_'];
+                $sql="SELECT * FROM pos_product WHERE category_id=$category_id";
+                $product=mysqli_query($db,$sql);
+            }
+        }
+        else {
+            $product=product_picker($db);
+        }
+        ?>
     </div>
     <div class="product-list">
         <!-- <div class="list-heading">
