@@ -137,6 +137,18 @@ $total_product=0;
                 <select name="category_" class="selectpicker form-control ">
                     <option value=" NULL">Select Catagory</option>
 
+                    <?php
+                    $category=category_picker($db);
+                    if (mysqli_num_rows($category)>0) {
+                        while ($category_result=mysqli_fetch_assoc($category)) {
+                            ?>
+                            <option value="<?php echo $category_result['category_id']; ?>"><?php echo  $category_result['category_title']; ?></option>
+                            <?php
+                        }
+                    }
+
+                    ?>
+
                 </select>
             </div>
             <button type="submit" class="btn btn-default searchbtn" name="category">Select Category</button>
