@@ -189,18 +189,39 @@ $total_product=0;
                     </thead>
                     <tbody>
 
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td><</td>
-                        <td></td>
-                        <td></td>
+                    <?php
 
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    if ($count=mysqli_num_rows($product)>0) {
+                    while ($record=mysqli_fetch_assoc($product)) {
+                    ?>
+
+                    <tr>
+                        <td><?php echo $record['p_id']; ?></td>
+                        <td><?php echo $record['name']; ?></td>
+                        <td><?php echo $record['barcode']; ?><</td>
+                        <td><?php
+                            $c="SELECT * FROM pos_category WHERE category_id={$record['category_id']}";
+                            $c1=mysqli_query($db,$c);
+                            $check_result=mysqli_fetch_assoc($c1);
+                            echo  $check_result['category_title']; ?></td>
+                        <td><?php $c="SELECT * FROM pos_brand WHERE brand_id={$record['brand_id']}";
+                            $c1=mysqli_query($db,$c);
+                            $check_result=mysqli_fetch_assoc($c1);
+                            echo  $check_result['brand_title']; ?></td>
+
+                        <td><?php echo $record['cost']; ?></td>
+                        <td><?php echo $record['price']; ?></td>
+                        <td><?php echo $record['quantity']; ?></td>
+                        <td><?php echo $record['created_date'];
+                            $total_price=$total_price+$record['cost'];
+                            $total_product=$total_product+$record['quantity'];
+                            ?></td>
                     </tr>
+
+                        <?php
+                    }
+                    }
+                    ?>
 
                     </tbody>
 
@@ -211,9 +232,13 @@ $total_product=0;
                 <thead>
 
                 <tr>
-                    <th></th>
-                    <th>Total Product Cost :</th>
-                    <th>Total Quantity :</th>
+                    <th>Total Item : <?php
+                        $a=product_picker($db);
+                        $b=mysqli_num_rows($a);
+                        echo $b;
+                        ?></th>
+                    <th>Total Product Cost :  <?php echo $total_price; ?></th>
+                    <th>Total Quantity :<?php echo $total_product; ?></th>
 
                 </tr>
                 </thead>
@@ -226,8 +251,8 @@ $total_product=0;
 <div class="main text-center">
     <div class="container">
         <h3 style='color: #333'>POS - A Crony of Point Of Sale</h3>
-        <h4 style='color: #333'>Call: +88 000000</h4>
-        <h5 style='color: #078830; font-weight: 700;' title='Shiam'>Developed by NSU</h5>
+        <h4 style='color: #333'>Call: +88 01631706287</h4>
+        <h5 style='color: #078830; font-weight: 700;' title='Shiam'>Developed by Wasik</h5>
     </div>
 </div>
 </body>
