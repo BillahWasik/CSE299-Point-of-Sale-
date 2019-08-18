@@ -107,6 +107,21 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
 <div class="container text-center">
     <div class="product-table">
 
+        <?php
+        if(isset($_POST['report'])){
+            if(!empty($_POST['start']) && !empty($_POST['end'])){
+                $startDate=$_POST['start'];
+                $endDate=$_POST['end'];
+                ?>
+                <h4>Your <time><?php echo $startDate; ?></time> To <time><?php echo $endDate; ?></time> Sales Report</h4>
+                <?php
+            }else{
+                ?><h4>Your <time>mm/dd/yyyy</time> to <time>mm/dd/yyyy</time> Sale Report</h4><?php
+            }
+        }else{
+            ?><h4>Your <time>mm/dd/yyyy</time> to <time>mm/dd/yyyy</time> Sale Report</h4><?php
+        } ?>
+
         <div id="table-scroll">
             <table class="table table-striped">
                 <thead>
