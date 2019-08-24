@@ -123,6 +123,13 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                 <div class="col-sm-6">
                     <h4 class="total">
 
+                        <?php if(isset($_POST['select_']) && !empty($_POST['invoice'])  && intval($_POST['invoice']) > 0){
+                            $invoice=intval($_POST['invoice']);
+                            echo "Invoice Number #".$invoice;}
+                        else{
+                            echo dateinfo();
+                        } ?>
+
                     </h4>
 
                 </div>
@@ -151,6 +158,27 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                     </tr>
                     </thead>
                     <tbody>
+
+                    <?php
+                    $credit = 0.0;
+                    $debit =0.0;
+                    $total_price = 0.0;
+                    if(isset($_POST['select_']) && !empty($_POST['invoice']) && intval($_POST['invoice']) > 0){
+                    $invoice=intval($_POST['invoice']);
+                    $sql = "SELECT * FROM pos_order WHERE customer_id = $invoice";
+
+
+                    $result = mysqli_query($db, $sql);
+
+                    if(mysqli_num_rows($result) > 0){
+
+                    while($record = mysqli_fetch_assoc($result)){
+                    $date = $record['date'];
+                    $query = "SELECT * FROM pos_product WHERE p_id={$record['p_id']}";
+                    $result2 = mysqli_query($db, $query);
+                    $record2 = mysqli_fetch_assoc($result2);
+
+                    ?>
 
                     <tr>
                         <td></td>
