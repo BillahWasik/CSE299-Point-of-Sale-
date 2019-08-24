@@ -203,11 +203,31 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                 </table>
             </div>
 
+            <?php
+
+
+            // $extra_cash = $shop_cash;
+            $net_sale =0.0;
+            $card_payment =0.0;
+            $cash_payment =0.0;
+            $net_discount =0.0;
+            if(isset($_POST['select_']) && !empty($_POST['invoice']) && intval($_POST['invoice']) > 0){
+            $invoice=intval($_POST['invoice']);
+            $sql = "SELECT * FROM pos_sale WHERE customer_id = $invoice ORDER BY sale_id DESC LIMIT 1";
+
+            $result = mysqli_query($db, $sql);
+
+            if(mysqli_num_rows($result) > 0){
+            while($record = mysqli_fetch_assoc($result)){
+
+
+            ?>
+
             <div class="row">
                 <div class="col-sm-4">
-                    <h5>Total Price:  BDT</h5>
+                    <h5>Total Price:<?php echo sprintf('%.2f', $record['total_price']); ?>  BDT</h5>
                     <h5>VAT: 0%</h5>
-                    <h5>Total Dicount: BDT</h5>
+                    <h5>Total Dicount:<?php echo $record['final_discount']+$record['discount_round'] ?> BDT</h5>
                 </div>
                 <div class="col-sm-8">
                     <h5 style="text-align: center; color: #d2079b; font-family: monospace; font-size: 16px;">Cash On Delivery </h5>
@@ -217,12 +237,16 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
             <div class="row">
                 <div class="col-sm-12">
                     <hr>
-                    <h5 style=" padding-bottom: 10px; " class="total-amount">Total: BDT</h5>
+                    <h5 style=" padding-bottom: 10px; " class="total-amount">Total:<?php echo sprintf('%.2f', $record['net_price']); ?> BDT</h5>
 
                 </div>
             </div>
 
         </div>
+        <?php 	  }
+        }
+        }
+        ?>
 
     </div>
 </div>
