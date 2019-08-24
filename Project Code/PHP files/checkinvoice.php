@@ -181,12 +181,23 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                     ?>
 
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo $record2['name']; ?></td>
+                        <td><?php echo $record2['barcode']; ?></td>
+                        <td><?php echo sprintf('%.2f', $record2['price'])." BDT"; ?></td>
+                        <td><?php echo $record['quantity']; ?></td>
+                        <td><?php $t = $record2['price'] * $record['quantity'];
+                            $total_price = $total_price + $t;
+                            echo sprintf('%.2f', $t)." BDT"; ?></td>
                     </tr>
+
+                        <?php
+                    } ?> <tr style="
+							background-color: #d2cffb;
+							font-weight: 600;
+							color: #1b4367;"><td>Date: <?php echo $date; ?></td><td></td><td></td><td></td><td><?php echo "".sprintf('%.2f', $total_price)." BDT"; ?></td></tr><?php
+                    }
+                    }
+                    ?>
 
                     </tbody>
                 </table>
