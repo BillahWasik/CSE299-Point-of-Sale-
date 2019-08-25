@@ -100,6 +100,61 @@ if (!isset($_SESSION['pos_admin']) || !isset($_COOKIE['userlog'])) {
                 </thead>
                 <tbody>
 
+                <?php
+                $total_cost=0.00;
+                $total_sale=0.00;
+                $total_quantity=0;
+                $total_profit=0.00;
+
+
+                $sql = "SELECT * FROM pos_order WHERE date = '$today' ORDER BY order_id DESC";
+
+
+                $result = mysqli_query($db, $sql);
+                if(mysqli_num_rows($result) > 0){
+                    while($record = mysqli_fetch_assoc($result)){
+                        $product = $record['p_id'];
+
+                        $sql2 = "SELECT * FROM pos_product WHERE p_id=$product";
+                        $result2 = mysqli_query($db, $sql2);
+                        if(mysqli_num_rows($result2) > 0){
+                            while($record2 = mysqli_fetch_assoc($result2)){
+                                ?>
+                                <tr>
+                                    <td><?php echo $record2['name']; ?></td>
+                                    <td><?php echo brand_name($db,$record2['brand_id']); ?></td>
+                                    <td>
+                                        <?php echo $record2['cost']." BDT";
+                                        $total_cost=$total_cost+ ($record2['cost']*$record['quantity']);
+                                        ?>
+                                    </td>
+                                    <!-- <td>10%</td> -->
+                                    <td>
+                                        <?php echo $record2['price']." BDT";
+                                        $total_sale = $total_sale + ($record2['price']*$record['quantity']);
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $record['quantity'];
+                                        $total_quantity=$total_quantity+$record['quantity'];
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php $profit = ($record2['price']*$record['quantity'])-($record2['cost']*$record['quantity']);
+                                        echo $profit;
+                                        $total_profit = $total_profit + $profit;
+                                        ?></td>
+                                    <td><?php echo $record['date']; ?></td>
+                                </tr>
+                                <?php
+                            }
+                        }
+                    }
+                }
+
+                ?>
+
                 </tbody>
             </table>
         </div>
