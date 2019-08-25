@@ -106,7 +106,7 @@ by scanning their barcode.</p>
   <img src="https://user-images.githubusercontent.com/51834225/63655160-7bfa2380-c7a6-11e9-9957-111a066f57b4.png"><br>
   <p>In the daily sale page , the admin or manager can see the Item , brand , cost , sale price and quantity and profit of the daily sale.</p>
   <img src="https://user-images.githubusercontent.com/51834225/63655183-e4e19b80-c7a6-11e9-9921-dcbeee86a6c3.png"><br>
-<p><h3>WEEK 10 :</h3> In the 10th week , I have worked with only one features . That is Weekly sale report. The admin or manager can see the weekly sale report of any product with their name , brand , cost , sale price and profit history.</p><br>
+<p><h3>WEEK 10 :</h3> In the 10th week , I have worked with two features . That is Weekly sale report and sign out option. The admin or manager can see the weekly sale report of any product with their name , brand , cost , sale price and profit history. And The other feature is all about sign out which is destroying the session.  </p><br>
 <img src="https://user-images.githubusercontent.com/51834225/63655217-66d1c480-c7a7-11e9-8f50-da02c0e9b3c3.png"><br>
 <p><h3>WEEK 11 :</h3>In the 11th week , I have worked with two features . That is Short sale report and another is Customer’s invoice. The admin or manager can see the short time period sale report of any product with their name , brand , cost , sale price and profit history by searching from a certain date to another date.</p><br>
 <img src="https://user-images.githubusercontent.com/51834225/63655260-c16b2080-c7a7-11e9-8630-11ec53615e5a.png"><br>
